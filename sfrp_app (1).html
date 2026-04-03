@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secours de France RP — Documents Officiels</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Special+Elite&family=Courier+Prime:wght@400;700&family=Barlow+Condensed:wght@700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   GLOBAL
+═══════════════════════════════════════════════ */
+:root {
+  --bg: #0d1321;
+  --gold: #c9a84c;
+  --navy: #1a2540;
+  /* Police */
+  --police-dark: #1a2540;
+  --police-gold: #c9a84c;
+  --police-paper: #ede8da;
+  /* Pompiers */
+  --pompier-red: #b91c1c;
+  --pompier-dark-red: #7f1d1d;
+  --pompier-gold: #d97706;
+  --pompier-paper: #fff8f8;
+  /* SAMU */
+  --samu-blue: #1d4ed8;
+  --samu-dark: #1e3a8a;
+  --samu-paper: #f0f4ff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: 'Courier Prime', monospace;
+  color: #1c1c2e;
+  min-height: 100vh;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,168,76,0.015) 40px, rgba(201,168,76,0.015) 41px);
+}
+
+/* ═══════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════ */
+header {
+  background: linear-gradient(135deg, #0d1a35 0%, #1a2540 100%);
+  border-bottom: 3px solid var(--gold);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+}
+.header-logo { font-size: 32px; }
+.header-text h1 {
+  font-family: 'IM Fell English', serif;
+  color: var(--gold);
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.header-text p {
+  color: rgba(255,255,255,0.4);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════════
+   SERVICE TABS (Police / Pompiers / SAMU)
+═══════════════════════════════════════════════ */
+.service-nav {
+  display: flex;
+  background: #080e1c;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0 20px;
+  gap: 4px;
+  overflow-x: auto;
+}
+.svc-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  padding: 13px 22px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: rgba(255,255,255,0.35);
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.svc-btn:hover { color: rgba(255,255,255,0.7); }
+.svc-btn.active-police { color: var(--police-gold); border-bottom-color: var(--police-gold); background: rgba(201,168,76,0.05); }
+.svc-btn.active-pompier { color: #f87171; border-bottom-color: #ef4444; background: rgba(239,68,68,0.06); }
+.svc-btn.active-samu { color: #60a5fa; border-bottom-color: #3b82f6; background: rgba(59,130,246,0.06); }
+
+/* ═══════════════════════════════════════════════
+   SERVICE PANELS
+═══════════════════════════════════════════════ */
+.svc-panel { display: none; }
+.svc-panel.active { display: block; }
+
+/* ═══════════════════════════════════════════════
+   SHARED PANEL LAYOUT
+═══════════════════════════════════════════════ */
+.panel-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 28px;
+}
+
+.panel-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.count-badge {
+  margin-left: auto;
+  color: rgba(255,255,255,0.25);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.fiches-stack { display: flex; flex-direction: column; gap: 36px; }
+
+.fiche-wrapper { animation: fadeSlide 0.3s ease; }
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fiche-meta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.fiche-num { margin-right: auto; font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.2); text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════════
+   BUTTONS — POLICE THEME
+═══════════════════════════════════════════════ */
+.btn-police-create {
+  background: linear-gradient(135deg, var(--police-gold), #a8883a);
+  color: var(--navy);
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+  box-shadow: 0 3px 12px rgba(201,168,76,0.3);
+}
+.btn-police-create:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(201,168,76,0.45); }
+
+.btn-pompier-create {
+  background: linear-gradient(135deg, var(--pompier-red), #991b1b);
+  color: #fff;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+  box-shadow: 0 3px 12px rgba(185,28,28,0.4);
+}
+.btn-pompier-create:hover { transform: translateY(-1px); }
+
+.btn-samu-create {
+  background: linear-gradient(135deg, var(--samu-blue), #1e40af);
+  color: #fff;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+  box-shadow: 0 3px 12px rgba(29,78,216,0.4);
+}
+.btn-samu-create:hover { transform: translateY(-1px); }
+
+.btn-dl, .btn-del {
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.btn-dl:hover { background: rgba(201,168,76,0.1); }
+.btn-del { color: #f87171; border-color: rgba(248,113,113,0.3); }
+.btn-del:hover { background: rgba(248,113,113,0.1); }
+
+/* ═══════════════════════════════════════════════
+   EMPTY STATE
+═══════════════════════════════════════════════ */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255,255,255,0.15);
+}
+.empty .ei { font-size: 44px; margin-bottom: 12px; opacity: 0.4; }
+.empty p { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+
+/* ════════════════════════════════════════════════
+   👮  POLICE DOCUMENT STYLE (nouveau)
+════════════════════════════════════════════════ */
+.doc-police {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 8px 12px 40px rgba(0,0,0,0.55);
+  font-family: 'Barlow Condensed', sans-serif;
+  overflow: hidden;
+}
+
+/* Header bleu marine */
+.pol-header {
+  background: #0f2557;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  min-height: 90px;
+  position: relative;
+}
+.pol-header-logo {
+  width: 100px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px;
+  flex-shrink: 0;
+}
+.pol-logo-circle {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a3a8f, #0f2557);
+  border: 3px solid #c9a84c;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 0 0 2px #0f2557, 0 0 12px rgba(201,168,76,0.4);
+}
+.pol-header-center {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+}
+.pol-header-rep {
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.pol-header-service {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.pol-header-sub {
+  color: rgba(255,255,255,0.55);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.pol-header-right {
+  width: 100px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+.pol-sdf-badge {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1;
+  border: 2px solid rgba(255,255,255,0.4);
+  padding: 4px 8px;
+  text-align: center;
+}
+.pol-sdf-badge span { display: block; font-size: 10px; font-weight: 600; letter-spacing: 2px; color: rgba(255,255,255,0.6); }
+.pol-flag-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, #002395 33%, #fff 33%, #fff 66%, #ED2939 66%);
+}
+
+/* Title bar */
+.pol-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fff;
+}
+.pol-title-line { flex: 1; height: 2px; background: linear-gradient(90deg, transparent, #0f2557); }
+.pol-title-line.right { background: linear-gradient(90deg, #0f2557, transparent); }
+.pol-title-star { color: #0f2557; font-size: 16px; }
+.pol-title-text {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #0f2557;
+  text-transform: uppercase;
+}
+
+/* Body */
+.pol-body { padding: 18px 24px; }
+
+/* Top fields row (2 col) */
+.pol-top-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-bottom: 10px;
+  align-items: start;
+}
+.pol-top-right { display: flex; flex-direction: column; gap: 6px; min-width: 220px; }
+
+.pol-field-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.pol-lbl {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: #0f2557; white-space: nowrap; flex-shrink: 0;
+}
+.pol-inp {
+  flex: 1; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 2px;
+  padding: 6px 10px; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px; font-weight: 600; color: #1c1c2e; outline: none; min-width: 0;
+  transition: border-color 0.2s;
+}
+.pol-inp:focus { border-color: #0f2557; background: #fff; }
+.pol-inp::placeholder { color: rgba(0,0,0,0.2); font-weight: 400; font-size: 12px; }
+.pol-inp-sm { width: 140px; flex: none; }
+
+/* Infractions section */
+.pol-section-header {
+  background: #0f2557;
+  color: #fff;
+  text-align: center;
+  padding: 8px 16px;
+  margin-bottom: 0;
+  border-radius: 2px 2px 0 0;
+}
+.pol-section-title { font-size: 16px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; }
+.pol-section-sub { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 1px; }
+
+.pol-infr-table {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-top: none;
+  margin-bottom: 14px;
+  border-radius: 0 0 2px 2px;
+  overflow: hidden;
+  padding-top: 4px;
+}
+.pol-infr-line {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  min-height: 32px;
+}
+.pol-infr-line:first-child { margin-top: 4px; }
+.pol-infr-line:last-child { border-bottom: none; margin-bottom: 4px; }
+.pol-infr-line:nth-child(even) { background: #f8fafc; }
+.pol-infr-num {
+  width: 36px; min-width: 36px;
+  text-align: center;
+  font-size: 12px; font-weight: 700; color: #0f2557;
+  padding: 5px 4px;
+  border-right: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+.pol-infr-inp {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+  font-weight: 500; color: #1c1c2e; padding: 6px 10px;
+}
+.pol-infr-inp::placeholder { color: rgba(0,0,0,0.15); font-size: 12px; font-weight: 400; }
+
+/* Perquisition block */
+.pol-perq-block {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #cbd5e1;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.pol-perq-left {
+  background: #0f2557;
+  color: #fff;
+  padding: 10px 16px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-width: 160px;
+  gap: 6px;
+}
+.pol-perq-title { font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+.pol-perq-cbs { display: flex; gap: 12px; }
+.pol-cb { display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 13px; font-weight: 700; color: #fff; }
+.pol-cb input[type=checkbox] {
+  appearance: none; width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.7); background: transparent;
+  cursor: pointer; position: relative; flex-shrink: 0;
+}
+.pol-cb input[type=checkbox]:checked { background: #c9a84c; border-color: #c9a84c; }
+.pol-cb input[type=checkbox]:checked::after { content: 'X'; position: absolute; top: -3px; left: 1px; color: #0f2557; font-size: 12px; font-weight: 900; }
+
+.pol-perq-right {
+  flex: 1; padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.pol-perq-rlbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #0f2557; white-space: nowrap; }
+
+/* Dark label block (suspect abattu) */
+.pol-dark-block {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.pol-dark-label {
+  background: #0f2557;
+  color: #fff;
+  font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  padding: 12px 20px;
+  white-space: nowrap;
+  min-width: 220px;
+}
+.pol-dark-content {
+  flex: 1; padding: 10px 16px;
+  display: flex; align-items: center; gap: 16px;
+}
+.pol-cb-dark { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 13px; font-weight: 700; color: #0f2557; }
+.pol-cb-dark input[type=checkbox] {
+  appearance: none; width: 16px; height: 16px;
+  border: 2px solid #0f2557; background: #fff;
+  cursor: pointer; position: relative; flex-shrink: 0;
+}
+.pol-cb-dark input[type=checkbox]:checked { background: #0f2557; }
+.pol-cb-dark input[type=checkbox]:checked::after { content: 'X'; position: absolute; top: -3px; left: 1px; color: #fff; font-size: 12px; font-weight: 900; }
+
+/* Notes */
+.pol-notes-block {
+  border: 1px solid #cbd5e1;
+  border-radius: 2px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.pol-notes-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: #0f2557; padding: 7px 12px; border-bottom: 1px solid #e2e8f0; background: #f8fafc;
+}
+.pol-notes-area {
+  width: 100%; min-height: 70px; background: #fff; border: none; outline: none;
+  padding: 8px 12px; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px; font-weight: 500; color: #1c1c2e; resize: vertical; line-height: 1.5;
+}
+
+/* Signature */
+.pol-sig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.pol-sig-box { display: flex; flex-direction: column; gap: 6px; }
+.pol-sig-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #0f2557; }
+.pol-sig-zone {
+  border: 1px solid #cbd5e1; border-radius: 2px; background: #f8fafc;
+  min-height: 55px; padding: 6px 10px; display: flex; flex-direction: column; justify-content: flex-end;
+}
+.pol-sig-inp {
+  background: transparent; border: none; border-bottom: 1px solid #cbd5e1;
+  outline: none; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-style: italic; color: #1c1c2e; width: 100%; padding: 2px 4px;
+}
+.pol-sig-date { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.pol-sig-date-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #0f2557; white-space: nowrap; }
+.pol-sig-date-inp {
+  flex: 1; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 2px;
+  padding: 4px 8px; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; color: #1c1c2e; outline: none;
+}
+.pol-sig-date-inp::placeholder { color: rgba(0,0,0,0.3); }
+
+/* Footer */
+.pol-footer {
+  background: #0f2557;
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  padding: 9px;
+  text-transform: uppercase;
+}
+.pol-footer-accent { height: 3px; background: linear-gradient(90deg, #002395 33%, #fff 33%, #fff 66%, #ED2939 66%); }
+
+/* ════════════════════════════════════════════════
+   🚒  POMPIERS DOCUMENT STYLE
+════════════════════════════════════════════════ */
+.doc-pompier {
+  background: var(--pompier-paper);
+  border: 1px solid #e5b4b4;
+  box-shadow: 8px 12px 40px rgba(0,0,0,0.55);
+  font-family: 'Barlow Condensed', sans-serif;
+  overflow: hidden;
+}
+
+.pom-header {
+  background: linear-gradient(135deg, var(--pompier-dark-red) 0%, var(--pompier-red) 60%, #c2410c 100%);
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  min-height: 80px;
+}
+.pom-header-logo {
+  background: rgba(0,0,0,0.25);
+  width: 90px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+  flex-shrink: 0;
+}
+.pom-header-text {
+  flex: 1;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pom-header-rep {
+  color: rgba(255,255,255,0.7);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.pom-header-service {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.pom-header-sub {
+  color: rgba(255,255,255,0.6);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.pom-header-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--pompier-gold), #fbbf24, var(--pompier-gold));
+}
+
+.pom-title-bar {
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--pompier-red);
+  text-transform: uppercase;
+  border-bottom: 2px solid #fca5a5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.pom-title-bar::before, .pom-title-bar::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pompier-red));
+}
+.pom-title-bar::after { background: linear-gradient(90deg, var(--pompier-red), transparent); }
+
+.pom-body { padding: 20px 24px; }
+
+.pom-section {
+  background: var(--pompier-red);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  margin-top: 14px;
+  border-radius: 2px;
+}
+
+.pom-field-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.pom-lbl {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: #1c1c2e; white-space: nowrap; flex-shrink: 0; min-width: 200px;
+}
+.pom-inp {
+  flex: 1; background: #fff; border: 1px solid #fca5a5;
+  border-radius: 2px; padding: 5px 8px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: #1c1c2e;
+  outline: none; min-width: 0; transition: border-color 0.2s;
+}
+.pom-inp:focus { border-color: var(--pompier-red); }
+.pom-inp::placeholder { color: rgba(0,0,0,0.2); font-size: 12px; }
+
+.pom-date-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.pom-date-part { display: flex; align-items: center; gap: 5px; }
+.pom-date-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #1c1c2e; white-space: nowrap; }
+.pom-date-inp {
+  background: #fff; border: 1px solid #fca5a5; border-radius: 2px;
+  padding: 5px 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+  color: #1c1c2e; outline: none; width: 150px;
+}
+.pom-date-inp:focus { border-color: var(--pompier-red); }
+
+/* numbered intervention lines */
+.pom-interv-grid { display: flex; flex-direction: column; gap: 4px; }
+.pom-interv-line {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid #fca5a5; border-radius: 2px; padding: 2px 4px;
+}
+.pom-interv-num {
+  width: 24px; height: 24px; background: var(--pompier-red); color: #fff;
+  border-radius: 2px; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.pom-interv-inp {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: #1c1c2e; padding: 3px 4px;
+}
+.pom-interv-inp::placeholder { color: rgba(0,0,0,0.2); font-size: 12px; }
+
+.pom-victim-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.pom-victim-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #1c1c2e; }
+
+.pom-cb-opt { display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 13px; font-weight: 700; color: #1c1c2e; }
+.pom-cb-opt input[type=checkbox] {
+  appearance: none; width: 15px; height: 15px; border: 2px solid var(--pompier-red);
+  background: #fff; cursor: pointer; position: relative; flex-shrink: 0;
+}
+.pom-cb-opt input[type=checkbox]:checked { background: var(--pompier-red); }
+.pom-cb-opt input[type=checkbox]:checked::after { content: 'X'; position: absolute; top: -3px; left: 1px; color: white; font-size: 12px; font-weight: 700; }
+
+.pom-color-inp {
+  flex: 1; background: #fff; border: none; border-bottom: 2px solid #fca5a5;
+  padding: 3px 6px; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; color: #1c1c2e; outline: none; min-width: 120px;
+}
+.pom-color-inp:focus { border-bottom-color: var(--pompier-red); }
+
+.pom-sig-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 8px;
+}
+.pom-sig-box { border: 1px solid #fca5a5; padding: 8px 12px; background: #fff; border-radius: 2px; }
+.pom-sig-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--pompier-red); margin-bottom: 6px; }
+.pom-sig-inp {
+  width: 100%; background: transparent; border: none; border-bottom: 1px solid #fca5a5;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: #1c1c2e; outline: none; padding: 3px 0;
+}
+
+.pom-footer-stripe {
+  background: linear-gradient(90deg, var(--pompier-dark-red), var(--pompier-red), var(--pompier-dark-red));
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  padding: 8px;
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════════════
+   🚑  SAMU DOCUMENT STYLE
+════════════════════════════════════════════════ */
+.doc-samu {
+  background: var(--samu-paper);
+  border: 1px solid #bfdbfe;
+  box-shadow: 8px 12px 40px rgba(0,0,0,0.55);
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+}
+
+.samu-header {
+  background: linear-gradient(135deg, var(--samu-dark) 0%, var(--samu-blue) 60%, #2563eb 100%);
+  display: flex;
+  align-items: stretch;
+  min-height: 80px;
+}
+.samu-header-logo {
+  background: rgba(0,0,0,0.2);
+  width: 90px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; flex-shrink: 0;
+}
+.samu-header-text { flex: 1; padding: 10px 16px; display: flex; flex-direction: column; justify-content: center; }
+.samu-header-rep { color: rgba(255,255,255,0.65); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; }
+.samu-header-service { color: #fff; font-size: 28px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; line-height: 1; }
+.samu-header-sub { color: rgba(255,255,255,0.55); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+.samu-header-stripe { height: 4px; background: linear-gradient(90deg, #1d4ed8, #ef4444, #1d4ed8); }
+
+.samu-title-bar {
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--samu-dark);
+  text-transform: uppercase;
+  border-bottom: 2px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.samu-title-bar::before, .samu-title-bar::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--samu-blue));
+}
+.samu-title-bar::after { background: linear-gradient(90deg, var(--samu-blue), transparent); }
+
+.samu-body { padding: 20px 24px; }
+
+.samu-section {
+  background: var(--samu-blue);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  margin-top: 14px;
+  border-radius: 2px;
+}
+
+.samu-field-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.samu-lbl { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #1e3a8a; white-space: nowrap; flex-shrink: 0; min-width: 200px; }
+.samu-inp {
+  flex: 1; background: #fff; border: 1px solid #bfdbfe; border-radius: 2px;
+  padding: 5px 8px; font-family: 'Rajdhani', sans-serif; font-size: 14px;
+  font-weight: 600; color: #1c1c2e; outline: none; min-width: 0;
+  transition: border-color 0.2s;
+}
+.samu-inp:focus { border-color: var(--samu-blue); }
+.samu-inp::placeholder { color: rgba(0,0,0,0.2); font-size: 12px; font-weight: 400; }
+
+.samu-victime-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.samu-vl { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #1e3a8a; white-space: nowrap; }
+
+.samu-cb-opt { display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 13px; font-weight: 600; color: #1c1c2e; }
+.samu-cb-opt input[type=checkbox] {
+  appearance: none; width: 15px; height: 15px; border: 2px solid var(--samu-blue);
+  background: #fff; cursor: pointer; position: relative; flex-shrink: 0;
+}
+.samu-cb-opt input[type=checkbox]:checked { background: var(--samu-blue); }
+.samu-cb-opt input[type=checkbox]:checked::after { content: 'X'; position: absolute; top: -3px; left: 1px; color: white; font-size: 12px; font-weight: 700; }
+
+.samu-bilan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.samu-bilan-cell { display: flex; align-items: center; gap: 6px; }
+.samu-bl { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #1e3a8a; white-space: nowrap; flex-shrink: 0; }
+.samu-bi {
+  flex: 1; background: #fff; border: 1px solid #bfdbfe; border-radius: 2px;
+  padding: 4px 6px; font-family: 'Rajdhani', sans-serif; font-size: 13px;
+  font-weight: 600; color: #1c1c2e; outline: none; min-width: 60px;
+}
+.samu-bi:focus { border-color: var(--samu-blue); }
+.samu-bi-unit { font-size: 11px; color: #6b7280; flex-shrink: 0; }
+
+.samu-textarea {
+  width: 100%; background: #fff; border: 1px solid #bfdbfe; border-radius: 2px;
+  padding: 8px 10px; font-family: 'Rajdhani', sans-serif; font-size: 13px;
+  font-weight: 600; color: #1c1c2e; outline: none; resize: vertical;
+  min-height: 60px; line-height: 1.5; margin-bottom: 8px;
+}
+.samu-textarea:focus { border-color: var(--samu-blue); }
+
+.samu-sig-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.samu-date-lbl { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #1e3a8a; white-space: nowrap; }
+.samu-date-inp {
+  background: #fff; border: 1px solid #bfdbfe; border-radius: 2px;
+  padding: 5px 8px; font-family: 'Rajdhani', sans-serif; font-size: 13px;
+  font-weight: 600; color: #1c1c2e; outline: none; width: 140px;
+}
+
+.samu-footer-stripe {
+  background: linear-gradient(90deg, var(--samu-dark), var(--samu-blue), var(--samu-dark));
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  padding: 8px;
+  margin-top: 14px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.samu-footer-flag {
+  display: flex;
+  gap: 2px;
+  height: 14px;
+}
+.samu-footer-flag span { display: block; width: 6px; height: 14px; }
+
+/* DETAIL BILAN row */
+.samu-detail-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+
+/* ════════════════════════════════════════════
+   AI GENERATOR TAB
+════════════════════════════════════════════ */
+.gen-panel { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,168,76,0.12); padding: 24px; border-radius: 2px; margin-bottom: 24px; }
+.gen-label { display: block; color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.gen-select {
+  background: rgba(0,0,0,0.35); border: 1px solid rgba(201,168,76,0.2); color: white;
+  font-family: 'Courier Prime', monospace; font-size: 13px; padding: 9px 12px;
+  outline: none; width: 100%; margin-bottom: 12px; border-radius: 1px;
+}
+.gen-select option { background: #1a2540; }
+.gen-textarea {
+  width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(201,168,76,0.18);
+  color: white; font-family: 'Courier Prime', monospace; font-size: 13px;
+  padding: 10px 14px; min-height: 100px; resize: vertical; outline: none;
+  border-radius: 1px; line-height: 1.6;
+}
+.gen-textarea:focus { border-color: rgba(201,168,76,0.45); }
+.gen-status { display: flex; align-items: center; gap: 10px; padding: 14px; border: 1px solid rgba(201,168,76,0.2); color: var(--gold); font-size: 12px; letter-spacing: 1px; margin-top: 16px; }
+.spinner { width: 14px; height: 14px; border: 2px solid rgba(201,168,76,0.3); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.gen-section-title { font-family: 'IM Fell English', serif; color: var(--gold); font-size: 19px; letter-spacing: 2px; margin-bottom: 6px; border-bottom: 1px solid rgba(201,168,76,0.15); padding-bottom: 8px; }
+.gen-subtitle { color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.gen-actions-bar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px; }
+.gen-preview { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,168,76,0.12); padding: 16px; font-size: 12px; line-height: 2; color: rgba(255,255,255,0.65); margin-top: 10px; }
+
+@media (max-width: 600px) {
+  .panel-inner { padding: 14px; }
+  .samu-bilan-grid { grid-template-columns: 1fr; }
+  .pom-sig-row { grid-template-columns: 1fr; }
+  .service-nav { padding: 0 8px; }
+  .svc-btn { padding: 11px 12px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">🛡️</div>
+  <div class="header-text">
+    <h1>Secours de France RP</h1>
+    <p>Système de gestion des documents officiels</p>
+  </div>
+</header>
+
+<!-- SERVICE NAV -->
+<nav class="service-nav">
+  <button class="svc-btn active-police" id="svc-police" onclick="switchService('police')">👮 Police</button>
+  <button class="svc-btn" id="svc-pompier" onclick="switchService('pompier')">🚒 Sapeurs-Pompiers</button>
+  <button class="svc-btn" id="svc-samu" onclick="switchService('samu')">🚑 SAMU</button>
+  <button class="svc-btn" id="svc-ia" onclick="switchService('ia')">🤖 Générateur IA</button>
+</nav>
+
+<!-- ══════════════════════════════════════
+     👮 POLICE PANEL
+══════════════════════════════════════ -->
+<div class="svc-panel active" id="panel-police">
+  <div class="panel-inner">
+    <div class="panel-toolbar">
+      <button class="btn-police-create" onclick="createPolice()">+ Créer une fiche</button>
+      <span class="count-badge" id="cnt-police">0 fiche(s)</span>
+    </div>
+    <div class="fiches-stack" id="stack-police">
+      <div class="empty" id="empty-police"><div class="ei">📋</div><p>Aucune fiche — cliquez sur « + Créer »</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     🚒 POMPIERS PANEL
+══════════════════════════════════════ -->
+<div class="svc-panel" id="panel-pompier">
+  <div class="panel-inner">
+    <div class="panel-toolbar">
+      <button class="btn-pompier-create" onclick="createPompier()">+ Créer un bilan</button>
+      <span class="count-badge" id="cnt-pompier">0 bilan(s)</span>
+    </div>
+    <div class="fiches-stack" id="stack-pompier">
+      <div class="empty" id="empty-pompier"><div class="ei">🚒</div><p>Aucun bilan — cliquez sur « + Créer »</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     🚑 SAMU PANEL
+══════════════════════════════════════ -->
+<div class="svc-panel" id="panel-samu">
+  <div class="panel-inner">
+    <div class="panel-toolbar">
+      <button class="btn-samu-create" onclick="createSamu()">+ Créer une fiche bilan</button>
+      <span class="count-badge" id="cnt-samu">0 fiche(s)</span>
+    </div>
+    <div class="fiches-stack" id="stack-samu">
+      <div class="empty" id="empty-samu"><div class="ei">🚑</div><p>Aucune fiche — cliquez sur « + Créer »</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     🤖 IA PANEL
+══════════════════════════════════════ -->
+<div class="svc-panel" id="panel-ia">
+  <div class="panel-inner">
+    <h2 class="gen-section-title">Générateur de Documents IA</h2>
+    <p class="gen-subtitle">Décrivez la situation, l'IA remplit le document</p>
+    <div class="gen-panel">
+      <label class="gen-label">Type de document</label>
+      <select class="gen-select" id="gen-type">
+        <option value="police">👮 Police — Casier judiciaire</option>
+        <option value="pompier">🚒 Sapeurs-Pompiers — Bilan d'intervention</option>
+        <option value="samu">🚑 SAMU — Fiche bilan</option>
+      </select>
+      <label class="gen-label">Votre prompt (optionnel)</label>
+      <textarea class="gen-textarea" id="gen-prompt" placeholder="Ex: Intervention suite à un accident de voiture, victime consciente, 2 blessés légers...&#10;Laissez vide pour générer un document type."></textarea>
+      <div style="margin-top:12px;display:flex;gap:10px;align-items:center;">
+        <button class="btn-police-create" onclick="generateDoc()">⚡ Générer</button>
+        <span style="color:rgba(255,255,255,0.2);font-size:11px;">Propulsé par Claude</span>
+      </div>
+    </div>
+    <div id="gen-result"></div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
+const counts = { police: 0, pompier: 0, samu: 0 };
+
+/* ══════════════════════════════════════════════
+   SERVICE SWITCHING
+══════════════════════════════════════════════ */
+const SERVICES = ['police','pompier','samu','ia'];
+function switchService(name) {
+  SERVICES.forEach(s => {
+    document.getElementById('panel-' + s).classList.remove('active');
+    const btn = document.getElementById('svc-' + s);
+    if (btn) btn.classList.remove('active-police','active-pompier','active-samu','active-ia');
+  });
+  document.getElementById('panel-' + name).classList.add('active');
+  const btn = document.getElementById('svc-' + name);
+  if (btn) {
+    const map = { police:'active-police', pompier:'active-pompier', samu:'active-samu', ia:'active-police' };
+    btn.classList.add(map[name] || 'active-police');
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SHARED HELPERS
+══════════════════════════════════════════════ */
+function radioCheck(groupName, val, el) {
+  document.querySelectorAll(`input[name="${groupName}"]`).forEach(o => { if (o !== el) o.checked = false; });
+}
+
+function addDoc(service, html, pfx) {
+  counts[service]++;
+  document.getElementById('empty-' + service)?.remove();
+  document.getElementById('cnt-' + service).textContent = counts[service] + (service === 'pompier' ? ' bilan(s)' : ' fiche(s)');
+  const id = pfx + counts[service];
+  const wrap = document.createElement('div');
+  wrap.className = 'fiche-wrapper';
+  wrap.id = 'wrap-' + id;
+  wrap.innerHTML = `
+    <div class="fiche-meta">
+      <span class="fiche-num">${service.toUpperCase()} #${String(counts[service]).padStart(4,'0')}</span>
+      <button class="btn-dl" onclick="downloadDoc('${id}')">⬇ Télécharger</button>
+      <button class="btn-del" onclick="deleteDoc('${id}','${service}')">✕</button>
+    </div>
+    <div id="${id}">${html}</div>
+  `;
+  document.getElementById('stack-' + service).prepend(wrap);
+  return id;
+}
+
+function deleteDoc(id, service) {
+  const el = document.getElementById('wrap-' + id);
+  if (!el) return;
+  el.style.transition = 'all 0.25s';
+  el.style.opacity = '0';
+  el.style.transform = 'translateX(16px)';
+  setTimeout(() => {
+    el.remove();
+    counts[service]--;
+    document.getElementById('cnt-' + service).textContent = counts[service] + (service === 'pompier' ? ' bilan(s)' : ' fiche(s)');
+    if (!document.querySelector('#stack-' + service + ' .fiche-wrapper')) {
+      const icons = { police:'📋', pompier:'🚒', samu:'🚑' };
+      const msgs = { police:'Aucune fiche', pompier:'Aucun bilan', samu:'Aucune fiche' };
+      const es = document.createElement('div');
+      es.className = 'empty'; es.id = 'empty-' + service;
+      es.innerHTML = `<div class="ei">${icons[service]}</div><p>${msgs[service]} — cliquez sur « + Créer »</p>`;
+      document.getElementById('stack-' + service).appendChild(es);
+    }
+  }, 250);
+}
+
+async function downloadDoc(id) {
+  const doc = document.getElementById(id);
+  if (!doc) return;
+  const btn = document.getElementById('wrap-' + id)?.querySelector('.btn-dl');
+  if (btn) btn.textContent = '⏳ Export...';
+
+  if (!window.html2canvas) {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    document.head.appendChild(s);
+    await new Promise(r => s.onload = r);
+  }
+
+  const clone = doc.cloneNode(true);
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = `position:fixed;top:0;left:-9999px;width:${doc.offsetWidth}px;background:white;z-index:-1;`;
+  wrapper.appendChild(clone);
+  document.body.appendChild(wrapper);
+
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  const h = clone.scrollHeight + 20;
+  wrapper.style.height = h + 'px';
+  clone.style.height = h + 'px';
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+  try {
+    const canvas = await html2canvas(clone, {
+      scale: 2, useCORS: true, allowTaint: true,
+      backgroundColor: null, logging: false,
+      width: doc.offsetWidth, height: h, scrollX: 0, scrollY: 0, x: 0, y: 0
+    });
+    document.body.removeChild(wrapper);
+
+    const dataUrl = canvas.toDataURL('image/png');
+    const defaultName = id + '.png';
+    if (window.electronAPI?.saveImage) {
+      const res = await window.electronAPI.saveImage({ dataUrl, defaultName });
+      if (res.success && btn) { btn.textContent = '✓ Sauvegardé !'; setTimeout(() => btn.textContent = '⬇ Télécharger', 2000); return; }
+    } else {
+      const a = document.createElement('a');
+      a.download = defaultName;
+      a.href = dataUrl;
+      a.click();
+    }
+  } catch(e) {
+    document.body.removeChild(wrapper);
+    alert('Erreur export : ' + e.message);
+  }
+  if (btn) btn.textContent = '⬇ Télécharger';
+}
+
+/* ══════════════════════════════════════════════
+   👮 POLICE FICHE
+══════════════════════════════════════════════ */
+function createPolice(pf) {
+  pf = pf || {};
+  let infrLines = '';
+  for (let i = 1; i <= 15; i++) {
+    const v = pf.infractions?.[i-1] || '';
+    infrLines += `
+      <div class="pol-infr-line">
+        <div class="pol-infr-num">${i}.</div>
+        <input class="pol-infr-inp" type="text" placeholder="" value="${v}">
+      </div>`;
+  }
+  const pid = 'police-' + (counts.police + 1);
+  const html = `
+    <div class="doc-police">
+      <!-- HEADER -->
+      <div class="pol-header">
+        <div class="pol-header-logo"><div class="pol-logo-circle">👮</div></div>
+        <div class="pol-header-center">
+          <div class="pol-header-rep">République de Secours de France</div>
+          <div class="pol-header-service">Police Nationale</div>
+          <div class="pol-header-sub">Service de Protection et de Sécurité</div>
+        </div>
+        <div class="pol-header-right">
+          <div class="pol-sdf-badge">SDF<span>RP</span></div>
+        </div>
+      </div>
+      <div class="pol-flag-stripe"></div>
+
+      <!-- TITLE -->
+      <div class="pol-title-bar">
+        <div class="pol-title-line"></div>
+        <span class="pol-title-star">★</span>
+        <div class="pol-title-text">Casier Judiciaire</div>
+        <span class="pol-title-star">★</span>
+        <div class="pol-title-line right"></div>
+      </div>
+
+      <!-- BODY -->
+      <div class="pol-body">
+
+        <!-- Top fields -->
+        <div class="pol-top-grid">
+          <div>
+            <div class="pol-field-row">
+              <span class="pol-lbl">Pseudo de l'accusé :</span>
+              <input class="pol-inp" type="text" placeholder="" value="${pf.accuse||''}">
+            </div>
+            <div class="pol-field-row">
+              <span class="pol-lbl">Pseudo du policier en charge de l'écriture :</span>
+              <input class="pol-inp" type="text" placeholder="" value="${pf.policier||''}">
+            </div>
+          </div>
+          <div class="pol-top-right">
+            <div class="pol-field-row">
+              <span class="pol-lbl" style="min-width:0;">N° de dossier :</span>
+              <input class="pol-inp pol-inp-sm" type="text" placeholder="">
+            </div>
+            <div class="pol-field-row">
+              <span class="pol-lbl" style="min-width:0;">Date de rédaction :</span>
+              <input class="pol-inp pol-inp-sm" type="text" placeholder="JJ / MM / AAAA">
+            </div>
+          </div>
+        </div>
+
+        <!-- Infractions -->
+        <div class="pol-section-header">
+          <div class="pol-section-title">Infraction.s</div>
+          <div class="pol-section-sub">Détaillez ci-dessous les infractions reprochées à l'accusé</div>
+        </div>
+        <div class="pol-infr-table">${infrLines}</div>
+
+        <!-- Perquisition -->
+        <div class="pol-perq-block">
+          <div class="pol-perq-left">
+            <div class="pol-perq-title">Perquisition ?</div>
+            <div class="pol-perq-cbs">
+              <label class="pol-cb"><input type="checkbox" name="${pid}-perq" onchange="radioCheck('${pid}-perq','oui',this); document.getElementById('${pid}-pd').style.opacity=this.checked?'1':'0.4';"> OUI</label>
+              <label class="pol-cb"><input type="checkbox" name="${pid}-perq" onchange="radioCheck('${pid}-perq','non',this); document.getElementById('${pid}-pd').style.opacity='0.4';"> NON</label>
+            </div>
+          </div>
+          <div class="pol-perq-right" id="${pid}-pd" style="opacity:0.4;">
+            <span class="pol-perq-rlbl">Si oui : Date et heure de la perquisition :</span>
+            <input class="pol-inp" type="text" placeholder="JJ / MM / AAAA" style="max-width:140px;">
+            <input class="pol-inp" type="text" placeholder="HH : MM" style="max-width:100px;">
+          </div>
+        </div>
+
+        <!-- Officier perquisition -->
+        <div class="pol-dark-block" style="margin-bottom:10px;">
+          <div style="background:#f8fafc;border-right:1px solid #cbd5e1;padding:10px 14px;flex-shrink:0;">
+            <span class="pol-lbl">Pseudo de l'officier en charge des opérations de la perquisition :</span>
+          </div>
+          <div style="flex:1;padding:6px 12px;">
+            <input class="pol-inp" type="text" placeholder="" value="${pf.officier||''}" style="width:100%;">
+          </div>
+        </div>
+
+        <!-- Suspect abattu -->
+        <div class="pol-dark-block">
+          <div class="pol-dark-label">Suspect abattu ?</div>
+          <div class="pol-dark-content">
+            <label class="pol-cb-dark"><input type="checkbox" name="${pid}-abat" onchange="radioCheck('${pid}-abat','oui',this)"> OUI</label>
+            <label class="pol-cb-dark"><input type="checkbox" name="${pid}-abat" onchange="radioCheck('${pid}-abat','non',this)"> NON</label>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="pol-notes-block" style="margin-top:10px;">
+          <div class="pol-notes-label">Notes / Informations complémentaires :</div>
+          <textarea class="pol-notes-area" placeholder=""></textarea>
+        </div>
+
+        <!-- Signatures -->
+        <div class="pol-sig-grid">
+          <div class="pol-sig-box">
+            <div class="pol-sig-lbl">Signature du policier en charge de l'écriture :</div>
+            <div class="pol-sig-zone">
+              <input class="pol-sig-inp" type="text" placeholder="✒">
+            </div>
+            <div class="pol-sig-date">
+              <span class="pol-sig-date-lbl">Date :</span>
+              <input class="pol-sig-date-inp" type="text" placeholder="JJ / MM / AAAA">
+            </div>
+          </div>
+          <div class="pol-sig-box">
+            <div class="pol-sig-lbl">Signature de l'officier supérieur :</div>
+            <div class="pol-sig-zone">
+              <input class="pol-sig-inp" type="text" placeholder="✒">
+            </div>
+            <div class="pol-sig-date">
+              <span class="pol-sig-date-lbl">Date :</span>
+              <input class="pol-sig-date-inp" type="text" placeholder="JJ / MM / AAAA">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="pol-footer-accent"></div>
+      <div class="pol-footer">Protéger · Servir · Respecter</div>
+    </div>`;
+  addDoc('police', html, 'police-');
+}
+
+/* ══════════════════════════════════════════════
+   🚒 POMPIERS BILAN
+══════════════════════════════════════════════ */
+function createPompier(pf) {
+  pf = pf || {};
+  let intervLines = '';
+  for (let i = 1; i <= 7; i++) {
+    const v = pf.interventions?.[i-1] || '';
+    intervLines += `
+      <div class="pom-interv-line">
+        <div class="pom-interv-num">${i}</div>
+        <input class="pom-interv-inp" type="text" placeholder="..." value="${v}">
+      </div>`;
+  }
+  const pid = 'pompier-' + (counts.pompier + 1);
+  const html = `
+    <div class="doc-pompier">
+      <div class="pom-header">
+        <div class="pom-header-logo">🚒</div>
+        <div class="pom-header-text">
+          <div class="pom-header-rep">République de Secours de France</div>
+          <div class="pom-header-service">Sapeurs-Pompiers</div>
+          <div class="pom-header-sub">Secours de France RP</div>
+        </div>
+      </div>
+      <div class="pom-header-stripe"></div>
+      <div class="pom-title-bar">Bilan d'Intervention</div>
+      <div class="pom-body">
+        <div class="pom-section">Informations</div>
+        <div class="pom-field-row"><span class="pom-lbl">Situation :</span><input class="pom-inp" type="text" placeholder="..." value="${pf.situation||''}"></div>
+        <div class="pom-field-row"><span class="pom-lbl">Adresse :</span><input class="pom-inp" type="text" placeholder="..." value="${pf.adresse||''}"></div>
+        <div class="pom-date-row">
+          <div class="pom-date-part"><span class="pom-date-lbl">Pseudo du Sapeur-Pompier :</span><input class="pom-date-inp" type="text" placeholder="..." value="${pf.pseudo||''}"></div>
+          <div class="pom-date-part"><span class="pom-date-lbl">Date :</span><input class="pom-date-inp" type="text" placeholder="JJ/MM/AAAA / HH:MM" value="${pf.date||''}"></div>
+        </div>
+        <div class="pom-field-row"><span class="pom-lbl">Nature de l'intervention :</span><input class="pom-inp" type="text" placeholder="..." value="${pf.nature||''}"></div>
+
+        <div class="pom-section">Intervention</div>
+        <div class="pom-interv-grid">${intervLines}</div>
+
+        <div style="height:8px;background:linear-gradient(90deg,var(--pompier-red),var(--pompier-gold),var(--pompier-red));margin:12px 0 10px;border-radius:1px;"></div>
+
+        <div class="pom-victim-row">
+          <span class="pom-victim-lbl">Victime(s) impliquée(s) ?</span>
+          <label class="pom-cb-opt"><input type="checkbox" name="${pid}-vic" onchange="radioCheck('${pid}-vic','oui',this)"> OUI</label>
+          <label class="pom-cb-opt"><input type="checkbox" name="${pid}-vic" onchange="radioCheck('${pid}-vic','non',this)"> NON</label>
+          <span class="pom-victim-lbl" style="margin-left:8px;">Nbre victimes SAMU :</span>
+          <input class="pom-date-inp" type="number" min="0" value="0" style="width:70px;">
+        </div>
+        <div class="pom-victim-row">
+          <span class="pom-victim-lbl">Victime(s) blessée(s) / prise en charge :</span>
+          <input class="pom-inp" type="text" placeholder="...">
+        </div>
+        <div class="pom-field-row" style="margin-top:6px;">
+          <span style="font-size:16px;">🟨</span>
+          <span class="pom-lbl" style="min-width:180px;">Équipement(s) déployé(s) :</span>
+          <input class="pom-color-inp" type="text" placeholder="...">
+        </div>
+        <div class="pom-field-row">
+          <span style="font-size:16px;">🟥</span>
+          <span class="pom-lbl" style="min-width:180px;">Secours effectués :</span>
+          <input class="pom-color-inp" type="text" placeholder="...">
+        </div>
+        <div class="pom-field-row">
+          <span style="font-size:16px;">🟥</span>
+          <span class="pom-lbl" style="min-width:180px;">Gestes effectués :</span>
+          <input class="pom-color-inp" type="text" placeholder="...">
+        </div>
+
+        <div class="pom-section">Signature</div>
+        <div class="pom-sig-row">
+          <div class="pom-sig-box">
+            <div class="pom-sig-title">Signature du Sapeur-Pompier</div>
+            <input class="pom-sig-inp" type="text" placeholder="/ _______________">
+          </div>
+          <div class="pom-sig-box">
+            <div class="pom-sig-title">Signature du Supérieur</div>
+            <input class="pom-sig-inp" type="text" placeholder="/ _______________">
+          </div>
+        </div>
+      </div>
+      <div class="pom-footer-stripe">Sauver · Protéger · Secourir</div>
+    </div>`;
+  addDoc('pompier', html, 'pompier-');
+}
+
+/* ══════════════════════════════════════════════
+   🚑 SAMU FICHE BILAN
+══════════════════════════════════════════════ */
+function createSamu(pf) {
+  pf = pf || {};
+  const pid = 'samu-' + (counts.samu + 1);
+  const html = `
+    <div class="doc-samu">
+      <div class="samu-header">
+        <div class="samu-header-logo">🚑</div>
+        <div class="samu-header-text">
+          <div class="samu-header-rep">République de Secours de France</div>
+          <div class="samu-header-service">SAMU</div>
+          <div class="samu-header-sub">Secours de France RP</div>
+        </div>
+      </div>
+      <div class="samu-header-stripe"></div>
+      <div class="samu-title-bar">Fiche Bilan</div>
+      <div class="samu-body">
+
+        <div class="samu-section">Informations</div>
+        <div class="samu-field-row"><span class="samu-lbl">Situation :</span><input class="samu-inp" type="text" placeholder="..." value="${pf.situation||''}"></div>
+        <div class="samu-field-row"><span class="samu-lbl">Adresse :</span><input class="samu-inp" type="text" placeholder="..." value="${pf.adresse||''}"></div>
+        <div class="samu-field-row"><span class="samu-lbl">Pseudo de l'urgenciste :</span><input class="samu-inp" type="text" placeholder="..." value="${pf.urgenciste||''}"></div>
+        <div class="samu-field-row"><span class="samu-lbl">Nature de l'intervention :</span><input class="samu-inp" type="text" placeholder="..." value="${pf.nature||''}"></div>
+
+        <div class="samu-section">Victime</div>
+        <div class="samu-victime-row">
+          <span class="samu-vl">Pseudo :</span>
+          <input class="samu-inp" type="text" placeholder="..." style="max-width:200px;" value="${pf.victime||''}">
+          <span class="samu-vl" style="margin-left:8px;">Âge :</span>
+          <input class="samu-inp" type="text" placeholder="..." style="max-width:80px;">
+          <label class="samu-cb-opt"><input type="checkbox" name="${pid}-age" onchange="radioCheck('${pid}-age','m',this)"> ♂</label>
+          <label class="samu-cb-opt"><input type="checkbox" name="${pid}-age" onchange="radioCheck('${pid}-age','f',this)"> ♀</label>
+          <label class="samu-cb-opt"><input type="checkbox" name="${pid}-age" onchange="radioCheck('${pid}-age','e',this)"> 👶 Enfant</label>
+        </div>
+
+        <div class="samu-section">Bilan</div>
+        <div class="samu-detail-row">
+          <span class="samu-vl">Détail du bilan :</span>
+          <input class="samu-inp" type="text" placeholder="..." style="flex:1;">
+          <label class="samu-cb-opt" style="margin-left:8px;"><input type="checkbox" name="${pid}-det" onchange="radioCheck('${pid}-det','oui',this)"> OUI</label>
+          <label class="samu-cb-opt"><input type="checkbox" name="${pid}-det" onchange="radioCheck('${pid}-det','non',this)"> NON</label>
+          <label class="samu-cb-opt"><input type="checkbox" name="${pid}-det" onchange="radioCheck('${pid}-det','enf',this)"> ENFANT</label>
+        </div>
+        <div class="samu-field-row">
+          <span class="samu-lbl">Conscient ?</span>
+          <label class="samu-cb-opt"><input type="checkbox" name="${pid}-cons" onchange="radioCheck('${pid}-cons','oui',this)"> OUI</label>
+          <label class="samu-cb-opt" style="margin-left:6px;"><input type="checkbox" name="${pid}-cons" onchange="radioCheck('${pid}-cons','non',this)"> NON</label>
+        </div>
+        <div class="samu-field-row">
+          <span class="samu-lbl">Prise de remplacement :</span>
+          <label class="samu-cb-opt"><input type="checkbox" name="${pid}-rpl" onchange="radioCheck('${pid}-rpl','oui',this)"> OUI</label>
+          <label class="samu-cb-opt" style="margin-left:6px;"><input type="checkbox" name="${pid}-rpl" onchange="radioCheck('${pid}-rpl','non',this)"> NON</label>
+        </div>
+        <div class="samu-bilan-grid">
+          <div class="samu-bilan-cell"><span class="samu-bl">V.A :</span><input class="samu-bi" type="text" placeholder="..."><span class="samu-bi-unit"></span></div>
+          <div class="samu-bilan-cell"><span class="samu-bl">SAT :</span><input class="samu-bi" type="text" placeholder="..."><span class="samu-bi-unit">%</span></div>
+          <div class="samu-bilan-cell"><span class="samu-bl">FC :</span><input class="samu-bi" type="text" placeholder="..."><span class="samu-bi-unit">/min</span><span class="samu-bl" style="margin-left:8px;">TAS :</span><input class="samu-bi" type="text" placeholder="..."></div>
+          <div class="samu-bilan-cell"><span class="samu-bl">GLYC :</span><input class="samu-bi" type="text" placeholder="..."><span class="samu-bi-unit">G/L</span></div>
+        </div>
+
+        <div class="samu-section">Intervention</div>
+        <div class="samu-vl" style="margin-bottom:5px;">Chronologie / Gestes effectués :</div>
+        <textarea class="samu-textarea" placeholder="Décrivez les gestes effectués dans l'ordre chronologique..."></textarea>
+        <div class="samu-vl" style="margin-bottom:5px;">Traitement(s) administré(s) :</div>
+        <textarea class="samu-textarea" placeholder="..."></textarea>
+        <div class="samu-vl" style="margin-bottom:5px;">Observations / Notes :</div>
+        <textarea class="samu-textarea" placeholder="..."></textarea>
+
+        <div class="samu-sig-row">
+          <span class="samu-date-lbl">Date :</span>
+          <input class="samu-date-inp" type="text" placeholder="JJ / MM / AAAA">
+          <span class="samu-date-lbl" style="margin-left:12px;">Signature de l'urgenciste :</span>
+          <input class="samu-inp" type="text" placeholder="/ _______________" style="flex:1; max-width:220px;">
+        </div>
+      </div>
+      <div class="samu-footer-stripe">
+        <div class="samu-footer-flag"><span style="background:#002395"></span><span style="background:#fff;border-top:1px solid #ddd;border-bottom:1px solid #ddd;"></span><span style="background:#ED2939"></span></div>
+        Sauver · Protéger · Soigner
+        <div class="samu-footer-flag"><span style="background:#002395"></span><span style="background:#fff;border-top:1px solid #ddd;border-bottom:1px solid #ddd;"></span><span style="background:#ED2939"></span></div>
+      </div>
+    </div>`;
+  addDoc('samu', html, 'samu-');
+}
+
+/* ══════════════════════════════════════════════
+   🤖 IA GENERATOR
+══════════════════════════════════════════════ */
+async function generateDoc() {
+  const type = document.getElementById('gen-type').value;
+  const prompt = document.getElementById('gen-prompt').value.trim();
+  const resultEl = document.getElementById('gen-result');
+
+  const typeLabels = { police: 'casier judiciaire Police', pompier: "bilan d'intervention Sapeurs-Pompiers", samu: 'fiche bilan SAMU' };
+
+  resultEl.innerHTML = `<div class="gen-status"><div class="spinner"></div><span>Génération en cours...</span></div>`;
+
+  const schemas = {
+    police: `{"accuse":"pseudo","policier":"pseudo","infractions":["...x15"],"perquisition":"oui/non","perqDate":"JJ/MM HH:MM","officier":"pseudo","abattu":"oui/non"}`,
+    pompier: `{"situation":"...","adresse":"...","pseudo":"...","date":"JJ/MM/AAAA HH:MM","nature":"...","interventions":["...x7"],"equipements":"...","secours":"...","gestes":"..."}`,
+    samu: `{"situation":"...","adresse":"...","urgenciste":"...","nature":"...","victime":"pseudo","age":"...","conscient":"oui/non","va":"...","sat":"...","fc":"...","glyc":"...","chronologie":"...","traitement":"...","observations":"..."}`
+  };
+
+  const sysPrompt = `Tu génères des données fictives pour le jeu de rôle "Secours de France RP".
+Réponds UNIQUEMENT en JSON valide, sans markdown ni backticks.
+Schema pour ${typeLabels[type]}: ${schemas[type]}
+Les pseudos sont des noms de joueurs RP (ex: "Shadow_Officer", "PompierPro42").
+Invente des données cohérentes et réalistes pour le contexte RP.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: sysPrompt,
+        messages: [{ role: 'user', content: prompt || `Génère un document type ${typeLabels[type]} pour une situation courante dans le jeu SFRP.` }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.map(i => i.text || '').join('') || '';
+    const parsed = JSON.parse(text.replace(/```json|```/g, '').trim());
+    window._lastGen = { type, data: parsed };
+
+    const previewLines = Object.entries(parsed).map(([k,v]) =>
+      `<div><span style="color:var(--gold);letter-spacing:1px;text-transform:uppercase;">${k}</span> → ${Array.isArray(v) ? v.filter(Boolean).join(', ') : (v||'—')}</div>`
+    ).join('');
+
+    resultEl.innerHTML = `
+      <div class="gen-status" style="background:rgba(46,139,87,0.1);border-color:rgba(46,139,87,0.3);color:#2ecc71;">✓ Document généré avec succès !</div>
+      <div class="gen-actions-bar" style="margin-top:10px;">
+        <button class="btn-police-create" onclick="importGenerated()">↑ Importer dans ${typeLabels[type]}</button>
+      </div>
+      <div class="gen-preview">${previewLines}</div>`;
+  } catch(e) {
+    resultEl.innerHTML = `<div class="gen-status" style="background:rgba(139,26,26,0.15);border-color:rgba(139,26,26,0.3);color:#e74c3c;">✕ Erreur : ${e.message}</div>`;
+  }
+}
+
+function importGenerated() {
+  if (!window._lastGen) return;
+  const { type, data } = window._lastGen;
+  switchService(type);
+  setTimeout(() => {
+    if (type === 'police') createPolice(data);
+    else if (type === 'pompier') createPompier(data);
+    else if (type === 'samu') createSamu(data);
+    window._lastGen = null;
+  }, 100);
+}
+</script>
+</body>
+</html>
